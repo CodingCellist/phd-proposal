@@ -9,27 +9,8 @@
 \addbibresource{lsv-types.bib}
 
 \begin{document}
-    \begin{itemize}
-        \item citations
-        \item model checking
-        \item critical systems
-        \item the door example
-    \end{itemize}
 
-    \section*{Background?}
-    \begin{itemize}
-        \item computer systems are found in many places in the modern world,
-              e.g. power plants, planes, sewage systems, medical devices, and
-              spacecrafts
-        \item these systems are critical and failure often catastrophic,
-              potentially resulting in the loss of lives
-        \item model checking is one way to guarantee software does what it says
-        \item model checking is also slow and often runs into the so-called
-              ``state explosion problem'' where the state space needing to be
-              explored for formal verification is too large, typically in terms
-              of memory
-    \end{itemize}
-
+    \section*{Background}
     There has been an explosion in where computer systems are found. They are
     everywhere and they control more and more of our lives, directly or
     indirectly. A couple of examples of this are power plants, planes, sewage
@@ -78,19 +59,6 @@ data DoorCmd : Type -> DoorState -> DoorState -> Type
     programs are still invalid (despite the type-checker not knowing so).
     
     \section*{Proposal}
-    \begin{itemize}
-        \item functional programming and dependent types allow to model
-              scenarios and the resulting programs can be guaranteed to do what
-              the type model says by type-checking the program
-        \item how does one know the types model the correct thing?
-        \item this proposal would aim to bring formal methods and model
-              checking, and type theory and functional programming closer
-              together by looking at whether it is possible to formally verify
-              the type model
-        \item could prove useful for critical systems engineering
-        \item could prove useful for functional programming
-    \end{itemize}
-    
     The aim of this research project would be to investigate how formal methods
     and model checking could complement or assist dependent types and
     functional programming and vice versa.
