@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{indentfirst}
+\usepackage{idrislang}
+
+\usepackage[backend=biber, maxnames=2, style=numeric, giveninits=true, sortcites=true]{biblatex}
+\DeclareNameAlias{author}{family-given}
+\addbibresource{lsv-types.bib}
+
+\begin{document}
+    \begin{itemize}
+        \item citations
+        \item model checking
+        \item critical systems
+        \item the door example
+    \end{itemize}
+
+    \section*{Background?}
+    \begin{itemize}
+        \item computer systems are found in many places in the modern world, e.g. power plants, planes, sewage systems, medical devices, and spacecrafts
+        \item these systems are critical and failure often catastrophic, potentially resulting in the loss of lives
+        \item model checking is one way to guarantee software does what it says
+        \item model checking is also slow and often runs into the so-called ``state explosion problem'' where the state space needing to be explored for formal verification is too large, typically in terms of memory
+    \end{itemize}
+
+    There has been an explosion in where computers are found. Computers are everywhere and they control more and more of our lives, directly or indirectly. A couple of examples of this are power plants, planes, sewage systems, medical devices, and spacecrafts. All of these systems use a computer at some point, commonly to control them. The systems mentioned are all critical in the sense that a failure would be catastrophical, potentially resulting in the loss of lives.
+    
+    For certain critical systems, model checking is a way of guaranteeing that the software works as expected by exhaustively testing every possible state the modelled program or protocol could be in. However, model checking is also slow and often runs into the ``State Explosion Problem'' \cite{goos_state_1998} where the model to be checked results in many more states than could physically be stored, even on modern hardware. This problem has been, and still is, studied in great detail \cite{goos_progress_2001,stuart_simulation-verification_2001,demri_parametric_2006,clarke_model_2008,kress-gazit_correct_2011,meyer_model_2012} but the most common solution remains to simplify the actual model into smaller submodels (e.g. \cite{yan_sun_verifying_2007}) which can result in problems not being caught due to it only emerging when the system as a whole is considered.\\
+    
+    Type systems allow us to formulate the inputs and outputs of programs in a way that the compiler can then check that we are indeed using the right things. This allows us to be confident that the program we have written is correct with respect to the 
+    
+    \section*{Proposal}
+    \begin{itemize}
+        \item functional programming and dependent types allow to model scenarios and the resulting programs can be guaranteed to do what the type model says by type-checking the program
+        \item how does one know the types model the correct thing?
+        \item this proposal would aim to bring formal methods and model checking, and type theory and functional programming closer together by looking at whether it is possible to formally verify the type model
+        \item could prove useful for critical systems engineering
+        \item could prove useful for functional programming
+    \end{itemize}
+    
+    The aim of this research project would be to investigate how formal methods and model checking could complement or assist dependent types and functional programming and vice versa.
+    
+    Initially, an investigation could be conducted into how type checking dependent types and model checking might overlap. For example: for verifying that the index of a fixed-length array does not go out of bounds, how does a dependent type system model and verify the indices, and how would this be done in a model checker like \textsc{Spin}?
+    
+    Based on the information obtained from this investigation, a framework for model checking types could be drafted, discussing potential compromises that may need to be made. This framework could then either be implemented as a formal model in an existing modelling language, e.g. \textsc{Promela}, or it may prove necessary to build a custom model checker (or customise an existing one).
+    
+    Overall, the aim of the project would be to explore how model checking dependent types could strengthen (or even prove) that the types capture the scenario the user is trying to model correctly. Additionally, going the other way, the aim would also be to explore how dependent types can help guarantee that the programs written are correct, instead of having to rewrite (often in a significantly simplified form) and check them in a formal modelling language.
+    
+    \newpage
+    
+    \printbibliography
+    
+\end{document}

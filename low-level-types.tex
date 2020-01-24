@@ -1,0 +1,31 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+\begin{document}
+    \section*{Background?}
+    \begin{itemize}
+        \item OS is hard to get right
+        \item low level programming uses lots of `tricks' to gain speed
+        \item functional programming and types allow for strong guarantees about program behaviour
+        \item but these concepts are usually found at a much higher abstraction level than OSs
+    \end{itemize}
+    
+    \section*{Proposal}
+    \begin{itemize}
+        \item is it possible to reason about OS-level things in types?
+        \item taking things further: is it possible to ``explain'' the low-level `hacks' commonly used (e.g. bit shifting) to the compiler using types?
+        \item would strengthen and help OS development
+        \item would potentially strengthen OSs in general
+    \end{itemize}
+
+    The aim of this research project would be to explore if it is possible to reason about low-level languages, concepts, and programs using dependent types.
+    
+    Initially, several low-level programs of varying complexity and importance could be chosen for study. If larger programs were picked, it may be necessary to initially start with fragments of these. From these, a table of commonly used low-level speed tricks could be constructed. This would serve as a base for discovering what concepts to initially focus on.
+    
+    Using the data obtained, a draft of what data structures, operations, and their types could be made. This would help assess whether a proof of concept can be implemented in an existing type system, e.g. \textsc{Idris}, or if a new language is required.
+    
+    From the proof of concept, the goal would be to design and implement a new low-level language (or potentially extend an existing one) with dependent types. The performance of the language would then be evaluated against existing low-level programming languages, e.g. C or Rust.
+    
+    Overall, the aim of the project would be to examine how dependent types could help and/or facilitate sound low-level development. If successful, this could prove highly useful for operating systems, critical systems, and embedded systems, just to mention a few. It could potentially also strengthen the security of these systems, something which the general public and media are becoming increasingly aware of.
+    
+\end{document}
