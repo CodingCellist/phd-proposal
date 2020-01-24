@@ -8,7 +8,12 @@
 \DeclareNameAlias{author}{family-given}
 \addbibresource{lsv-types.bib}
 
+\title{What's my type?\\Examining how model checking and type systems may
+       compliment and help each other}
+\date{}
+
 \begin{document}
+    \maketitle
 
     \section*{Background}
     There has been an explosion in where computer systems are found. They are
@@ -73,7 +78,51 @@ data DoorCmd : Type -> DoorState -> DoorState -> Type
     used for checking that protocols are valid (e.g. that it is possible to
     reach a certain state under the current protocol), it is possible that model
     checking could also be used to answer the question ``Do my types correctly
-    model my problem?''
+    model my problem?'' The door example could be modelled in \textsc{Spin} with
+    the following Promela code:
+    \begin{code}
+mtype:state = { DoorOpen, DoorClosed };
+mtype:action = { Open, Close, RingBell };
+
+chan c = [0] of { mtype:action };
+
+mtype:state doorstate;
+
+init
+{
+    do
+    :: doorstate = DoorOpen; break;
+    :: doorstate = DoorClosed; break;
+    od
+    run SENDER();
+    run RECEIVER();
+}
+
+proctype SENDER()
+{
+    do
+    :: c!Open
+    :: c!Close
+    :: c!RingBell
+    od
+}
+
+proctype RECEIVER()
+{
+    do
+    :: (c?Close && doorstate == DoorOpen) ->
+           doorstate = DoorClose;
+    :: (c?Open && doorstate == DoorClosed) ->
+           doorstate = DoorOpen;
+    :: (c?RingBell && doorstate == DoorClosed) ->
+           doorstate = DoorClose;
+    od
+}
+    \end{code}
+    With this model in Promela, we could then use Linear Temporal Logic and
+    \textsc{Spin} to examine questions like ``Is it always possible to open the
+    door?'' or ``Can the door infinitely often be in the \texttt{DoorOpen}
+    state?''\\
     
     Initially, an investigation could be conducted into how type checking
     dependent types and model checking might overlap. For example: for
